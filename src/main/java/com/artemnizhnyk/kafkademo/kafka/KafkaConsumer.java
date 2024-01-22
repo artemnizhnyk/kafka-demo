@@ -1,2 +1,15 @@
-package com.artemnizhnyk.kafkademo.kafka;public class KafkaConsumer {
+package com.artemnizhnyk.kafkademo.kafka;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+public class KafkaConsumer {
+
+    @KafkaListener(topics = "kafka-test", groupId = "my_consumer")
+    public void listen(final String message) {
+        log.info("Received message: " + message);
+    }
 }
